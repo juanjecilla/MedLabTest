@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_home"
+        android:title=""
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/selector_ic_home" />
+    <item
+        android:id="@+id/action_fav"
+        android:title=""
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/selector_ic_fav" />
+</menu>

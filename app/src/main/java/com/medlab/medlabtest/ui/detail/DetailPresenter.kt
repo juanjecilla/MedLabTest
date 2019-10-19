@@ -14,7 +14,7 @@ class DetailPresenter @Inject constructor(private val mDatabaseManager: Database
 
     override fun getMovieDetail(id: Long) {
 
-        mDatabaseManager.getMovieDetail(id, object : DataSource.GetMovieDetailCallback  {
+        mDatabaseManager.getMovieDetail(id, object : DataSource.GetMovieDetailCallback {
 
             override fun onSuccess(movie: MovieDetail) {
                 view?.setProgressBar(false)

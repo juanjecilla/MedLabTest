@@ -8,21 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medlab.medlabtest.R
 import com.medlab.medlabtest.base.BaseItemList
 import com.medlab.medlabtest.base.BaseListViewHolder
+import com.medlab.medlabtest.data.callbacks.OnMovieItemListener
 import com.medlab.medlabtest.data.model.DummyItem
 import com.medlab.medlabtest.data.model.MovieItem
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_vertical.view.*
 import kotlinx.android.synthetic.main.item_loading.view.*
-import java.util.ArrayList
+import java.util.*
 
-class ListAdapter (
+class MovieListAdapter(
     private val mData: ArrayList<BaseItemList>,
-    private val mListener: ListContract.View
+    private val mListener: OnMovieItemListener
 ) :
     RecyclerView.Adapter<BaseListViewHolder<*>>() {
 
     var mShouldShowLoading = true
-    var mShouldShowHeader = true
 
     init {
         initAdapterItems()
@@ -123,12 +123,14 @@ class ListAdapter (
 
         init {
             itemView.setOnClickListener(this)
+            itemView.item_fav.setOnClickListener(this)
         }
 
         override fun bindItem(item: MovieItem) {
             this.mMovieItem = item
 
-            Picasso.get().load("https://image.tmdb.org/t/p/w185_and_h278_bestv2/" + item.posterPath).into(itemView.item_image)
+            Picasso.get().load("https://image.tmdb.org/t/p/w185_and_h278_bestv2/" + item.posterPath)
+                .into(itemView.item_image)
             itemView.item_title.text = item.title
 
 

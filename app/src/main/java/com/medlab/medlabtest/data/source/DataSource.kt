@@ -1,7 +1,6 @@
 package com.medlab.medlabtest.data.source
 
 import com.google.gson.JsonElement
-import com.google.gson.JsonObject
 import com.medlab.medlabtest.data.model.MovieDetail
 import com.medlab.medlabtest.data.model.MovieItem
 

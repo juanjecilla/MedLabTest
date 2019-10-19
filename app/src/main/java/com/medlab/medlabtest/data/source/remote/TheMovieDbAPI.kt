@@ -1,13 +1,11 @@
 package com.medlab.medlabtest.data.source.remote
 
 import com.google.gson.JsonElement
-
-import java.util.HashMap
-
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
+import java.util.*
 
 interface TheMovieDbAPI {
 

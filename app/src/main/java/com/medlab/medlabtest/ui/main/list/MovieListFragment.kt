@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.medlab.medlabtest.R
 import com.medlab.medlabtest.base.BaseScrollingView
+import com.medlab.medlabtest.data.callbacks.OnMovieItemListener
 import com.medlab.medlabtest.data.model.MovieItem
 import com.medlab.medlabtest.data.model.messages.FavUpdatedMessage
 import com.medlab.medlabtest.ui.detail.DetailActivity
@@ -22,19 +23,21 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
-class ListFragment: BaseScrollingView(), ListContract.View {
+class MovieListFragment : BaseScrollingView(), MovieListContract.View, OnMovieItemListener {
 
 
-    @Inject lateinit var mPresenter: ListPresenter
+    @Inject
+    lateinit var mPresenter: MovieListPresenter
 
-    private lateinit var mAdapter: ListAdapter
+    private lateinit var mAdapterMovie: MovieListAdapter
     private var mLayoutManager = LinearLayoutManager(
         context,
         LinearLayoutManager.VERTICAL,
         false
     )
     private var mEndlessRecyclerViewScrollListener =
-        object : EndlessRecyclerViewScrollListener(mLayoutManager,
+        object : EndlessRecyclerViewScrollListener(
+            mLayoutManager,
             STARTING_PAGE_INDEX
         ) {
 
@@ -49,25 +52,21 @@ class ListFragment: BaseScrollingView(), ListContract.View {
         super.onCreate(savedInstanceState)
         EventBus.getDefault().register(this)
 
-        if (arguments != null) {
-        }
-
-        mAdapter = ListAdapter(arrayListOf(), this)
+        mAdapterMovie = MovieListAdapter(arrayListOf(), this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_list, container, false)
 
-        return view
+        return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.movie_list.adapter = mAdapter
+        view.movie_list.adapter = mAdapterMovie
         view.movie_list.isNestedScrollingEnabled = false
         view.movie_list.layoutManager = mLayoutManager
         view.movie_list.addOnScrollListener(mEndlessRecyclerViewScrollListener)
@@ -91,10 +90,10 @@ class ListFragment: BaseScrollingView(), ListContract.View {
     }
 
     override fun shouldShowPlaceholderText() {
-        if (mAdapter.itemCount > 2){
+        if (mAdapterMovie.itemCount > 1) {
             empty_list.visibility = View.GONE
             movie_list.visibility = View.VISIBLE
-        } else{
+        } else {
             empty_list.visibility = View.VISIBLE
             movie_list.visibility = View.GONE
         }
@@ -105,7 +104,7 @@ class ListFragment: BaseScrollingView(), ListContract.View {
     }
 
     override fun showMovies(movieItems: ArrayList<MovieItem>) {
-        mAdapter.addAll(movieItems)
+        mAdapterMovie.addAll(movieItems)
     }
 
     override fun showMovieDetail(movieItem: MovieItem) {
@@ -114,21 +113,21 @@ class ListFragment: BaseScrollingView(), ListContract.View {
         startActivity(intent)
     }
 
-    override fun updateFav(item: MovieItem) {
-
+    override fun updateFav(movieItem: MovieItem) {
+        mPresenter.updateFavourite(movieItem)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: FavUpdatedMessage) {
-        mAdapter.notifyItemUpdated(event.item)
+        mAdapterMovie.notifyItemUpdated(event.item)
     }
 
     companion object {
 
         private const val STARTING_PAGE_INDEX = 0
 
-        fun newInstance(): ListFragment {
-            val fragment = ListFragment()
+        fun newInstance(): MovieListFragment {
+            val fragment = MovieListFragment()
             val args = Bundle()
             fragment.arguments = args
             return fragment
