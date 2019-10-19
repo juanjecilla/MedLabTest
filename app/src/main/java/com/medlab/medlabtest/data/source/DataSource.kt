@@ -2,6 +2,7 @@ package com.medlab.medlabtest.data.source
 
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import com.medlab.medlabtest.data.model.MovieDetail
 import com.medlab.medlabtest.data.model.MovieItem
 
 abstract class DataSource {
@@ -15,7 +16,7 @@ abstract class DataSource {
     }
 
     interface GetMovieDetailCallback {
-        fun onSuccess(movieItem: MovieItem)
+        fun onSuccess(movie: MovieDetail)
 
         fun onFailure(throwable: Throwable)
 
@@ -36,5 +37,5 @@ abstract class DataSource {
 
     abstract fun getMovieItems(page: Int, callback: GetMovieItemsCallback)
 
-    abstract fun getMovieDetail(id: String, callback: GetMovieDetailCallback)
+    abstract fun getMovieDetail(id: Long, callback: GetMovieDetailCallback)
 }

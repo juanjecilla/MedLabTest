@@ -1,5 +1,6 @@
-package com.medlab.medlabtest.ui.list
+package com.medlab.medlabtest.ui.main.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import com.medlab.medlabtest.R
 import com.medlab.medlabtest.base.BaseScrollingView
 import com.medlab.medlabtest.data.model.MovieItem
 import com.medlab.medlabtest.data.model.messages.FavUpdatedMessage
+import com.medlab.medlabtest.ui.detail.DetailActivity
 import com.medlab.medlabtest.utils.EndlessRecyclerViewScrollListener
+import com.medlab.medlabtest.utils.Properties
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_list.view.*
@@ -106,7 +109,9 @@ class ListFragment: BaseScrollingView(), ListContract.View {
     }
 
     override fun showMovieDetail(movieItem: MovieItem) {
-
+        val intent = Intent(context, DetailActivity::class.java)
+        intent.putExtra(Properties.EXTRA_MOVIE_ID, movieItem.id)
+        startActivity(intent)
     }
 
     override fun updateFav(item: MovieItem) {

@@ -1,6 +1,6 @@
 package com.medlab.medlabtest.di.modules
 
-import com.medlab.medlabtest.ui.list.ListFragment
+import com.medlab.medlabtest.ui.main.list.ListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

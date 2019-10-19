@@ -1,4 +1,4 @@
-package com.medlab.medlabtest.ui.list
+package com.medlab.medlabtest.ui.main.list
 
 import android.util.Log
 import com.medlab.medlabtest.base.BasePresenter

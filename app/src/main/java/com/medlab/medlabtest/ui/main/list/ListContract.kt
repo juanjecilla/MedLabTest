@@ -1,4 +1,4 @@
-package com.medlab.medlabtest.ui.list
+package com.medlab.medlabtest.ui.main.list
 
 import com.medlab.medlabtest.base.IBasePresenter
 import com.medlab.medlabtest.base.IBaseView

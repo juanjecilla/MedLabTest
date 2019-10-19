@@ -12,14 +12,17 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class TheMovieDbRequest(
-    private val mTheMovieDbAPI: TheMovieDbAPI, params: HashMap<String, String>,
-    request: Int, private val mCallback: DataSource.TheMovieDbCallback
+    private val mTheMovieDbAPI: TheMovieDbAPI,
+    params: HashMap<String, String>,
+    path: HashMap<String, String>,
+    request: Int,
+    private val mCallback: DataSource.TheMovieDbCallback
 ) : Callback<JsonElement> {
 
     private val mCall: Call<JsonElement>?
 
     init {
-        this.mCall = getCall(params, request)
+        this.mCall = getCall(params, path, request)
     }
 
     override fun onResponse(call: Call<JsonElement>, response: Response<JsonElement>) {
@@ -39,12 +42,19 @@ class TheMovieDbRequest(
         mCallback.onFailure(t)
     }
 
-    private fun getCall(params: HashMap<String, String>, requestCode: Int): Call<JsonElement>? {
+    private fun getCall(
+        params: HashMap<String, String>,
+        path: HashMap<String, String>,
+        requestCode: Int
+    ): Call<JsonElement>? {
 
         var call: Call<JsonElement>? = null
 
         when (requestCode) {
             APICodes.GET_MOVIE_LIST -> call = mTheMovieDbAPI.getMovieList(params)
+            APICodes.GET_MOVIE_DETAIL -> call = path["movie_id"]?.let {
+                mTheMovieDbAPI.getMovieDetail(it, params)
+            }
         }
 
         return call
