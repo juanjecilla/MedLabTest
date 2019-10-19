@@ -32,7 +32,7 @@ constructor(
         })
     }
 
-    fun getMovieDetail(id: String, callback: DataSource.GetMovieDetailCallback) {
+    fun getMovieDetail(id: Long, callback: DataSource.GetMovieDetailCallback) {
         mRemoteDataSource.getMovieDetail(id, callback)
     }
 

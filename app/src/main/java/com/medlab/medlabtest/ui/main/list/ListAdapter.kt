@@ -1,4 +1,4 @@
-package com.medlab.medlabtest.ui.list
+package com.medlab.medlabtest.ui.main.list
 
 import android.view.LayoutInflater
 import android.view.View

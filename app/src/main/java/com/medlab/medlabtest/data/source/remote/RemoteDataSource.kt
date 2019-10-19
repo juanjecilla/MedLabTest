@@ -13,6 +13,7 @@ constructor(private val mTheMovieDbManager: TheMovieDbManager) : DataSource() {
         mTheMovieDbManager.getMovieItems(page, callback)
     }
 
-    override fun getMovieDetail(id: String, callback: GetMovieDetailCallback) {
+    override fun getMovieDetail(id: Long, callback: GetMovieDetailCallback) {
+        mTheMovieDbManager.getMovieDetail(id, callback)
     }
 }

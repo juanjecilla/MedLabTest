@@ -1,10 +1,10 @@
-package com.medlab.medlabtest.ui
+package com.medlab.medlabtest.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.medlab.medlabtest.R
 import com.medlab.medlabtest.base.BaseFragmentActivity
-import com.medlab.medlabtest.ui.list.ListFragment
+import com.medlab.medlabtest.ui.main.list.ListFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
