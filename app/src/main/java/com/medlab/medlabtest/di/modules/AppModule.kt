@@ -2,7 +2,6 @@ package com.medlab.medlabtest.di.modules
 
 import android.app.Application
 import android.content.Context
-import com.medlab.medlabtest.AppClass
 import com.medlab.medlabtest.R
 import com.medlab.medlabtest.data.source.remote.TheMovieDbAPI
 import dagger.Module
@@ -18,7 +17,7 @@ object AppModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun provideContext(app : Application) : Context = app
+    fun provideContext(app: Application): Context = app
 
     @Provides
     @Singleton

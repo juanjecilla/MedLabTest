@@ -5,11 +5,11 @@ import com.medlab.medlabtest.base.BasePresenter
 import com.medlab.medlabtest.data.manager.DatabaseManager
 import com.medlab.medlabtest.data.model.MovieItem
 import com.medlab.medlabtest.data.source.DataSource
-import java.util.ArrayList
+import java.util.*
 import javax.inject.Inject
 
-class ListPresenter @Inject constructor(private val mDatabaseManager : DatabaseManager) :
-    BasePresenter<ListContract.View>(), ListContract.Presenter {
+class MovieListPresenter @Inject constructor(private val mDatabaseManager: DatabaseManager) :
+    BasePresenter<MovieListContract.View>(), MovieListContract.Presenter {
 
     override fun getMovies(page: Int) {
         view?.setProgressBar(true)
@@ -35,6 +35,6 @@ class ListPresenter @Inject constructor(private val mDatabaseManager : DatabaseM
     }
 
     companion object {
-        const val TAG = "ListPresenter:"
+        const val TAG = "MovieListPresenter:"
     }
 }

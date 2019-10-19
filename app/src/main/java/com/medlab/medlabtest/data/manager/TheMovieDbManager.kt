@@ -2,6 +2,7 @@ package com.medlab.medlabtest.data.manager
 
 import com.google.gson.Gson
 import com.google.gson.JsonElement
+import com.medlab.medlabtest.data.model.MovieDetail
 import com.medlab.medlabtest.data.model.MovieItem
 import com.medlab.medlabtest.data.source.DataSource
 import com.medlab.medlabtest.data.source.remote.APICodes
@@ -9,8 +10,6 @@ import com.medlab.medlabtest.data.source.remote.TheMovieDbAPI
 import com.medlab.medlabtest.data.source.remote.TheMovieDbRequest
 import javax.inject.Inject
 import javax.inject.Singleton
-import com.google.gson.reflect.TypeToken
-import com.medlab.medlabtest.data.model.MovieDetail
 
 
 @Singleton
@@ -33,7 +32,12 @@ constructor(
             APICodes.GET_MOVIE_LIST,
             object : DataSource.TheMovieDbCallback {
                 override fun onSuccess(results: JsonElement) {
-                    val movieResults: ArrayList<MovieItem> = ArrayList(Gson().fromJson(results.asJsonObject.getAsJsonArray("results"), Array<MovieItem>::class.java).toList())
+                    val movieResults: ArrayList<MovieItem> = ArrayList(
+                        Gson().fromJson(
+                            results.asJsonObject.getAsJsonArray("results"),
+                            Array<MovieItem>::class.java
+                        ).toList()
+                    )
                     callback.onSuccess(movieResults)
                 }
 

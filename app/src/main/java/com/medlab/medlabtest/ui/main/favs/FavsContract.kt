@@ -1,20 +1,19 @@
-package com.medlab.medlabtest.ui.main.list
+package com.medlab.medlabtest.ui.main.favs
 
 import com.medlab.medlabtest.base.IBasePresenter
 import com.medlab.medlabtest.base.IBaseView
 import com.medlab.medlabtest.data.model.MovieItem
+import java.util.*
 
-interface ListContract {
+interface FavsContract {
     interface View : IBaseView {
 
-        fun showMovies(movieItems: ArrayList<MovieItem>)
-        fun showMovieDetail(movieItem: MovieItem)
+        fun showFavorites(movieItems: ArrayList<MovieItem>)
         fun shouldShowPlaceholderText()
-        fun updateFav(item: MovieItem)
     }
 
     interface Presenter : IBasePresenter<View> {
 
-        fun getMovies(page: Int)
+        fun getFavourites()
     }
 }

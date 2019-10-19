@@ -1,15 +1,12 @@
 package com.medlab.medlabtest.data.source.remote
 
 import android.util.Log
-
 import com.google.gson.JsonElement
 import com.medlab.medlabtest.data.source.DataSource
-
-import java.util.HashMap
-
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class TheMovieDbRequest(
     private val mTheMovieDbAPI: TheMovieDbAPI,

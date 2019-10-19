@@ -37,10 +37,10 @@ constructor(
     }
 
     fun getFavourites(callback: DataSource.FavouriteCallback) {
-        mLocalDataSource.getFavourites(callback)
+        mLocalDataSource.getFavorites(callback)
     }
 
     fun toggleFavourite(movieItem: MovieItem) {
-        mLocalDataSource.toggleFavourite(movieItem)
+        mLocalDataSource.toggleFavorite(movieItem)
     }
 }
