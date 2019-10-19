@@ -1,9 +1,9 @@
 package com.medlab.medlabtest.di.modules
 
+import android.app.Application
 import android.content.Context
 import com.medlab.medlabtest.AppClass
 import com.medlab.medlabtest.R
-import com.medlab.medlabtest.data.manager.PreferencesManager
 import com.medlab.medlabtest.data.source.remote.TheMovieDbAPI
 import dagger.Module
 import dagger.Provides
@@ -18,7 +18,7 @@ object AppModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun provideContext(app : AppClass) : Context = app
+    fun provideContext(app : Application) : Context = app
 
     @Provides
     @Singleton
@@ -27,6 +27,7 @@ object AppModule {
 
     @Provides
     @Singleton
+    @JvmStatic
     fun provideRetrofit(context: Context): Retrofit {
         return Retrofit.Builder()
             .baseUrl(context.getString(R.string.base_url_service))
@@ -36,9 +37,8 @@ object AppModule {
 
     @Provides
     @Singleton
+    @JvmStatic
     fun provideRetrofitAPI(retrofit: Retrofit): TheMovieDbAPI {
         return retrofit.create<TheMovieDbAPI>(TheMovieDbAPI::class.java)
     }
-
-
 }

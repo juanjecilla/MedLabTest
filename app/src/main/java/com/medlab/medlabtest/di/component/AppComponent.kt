@@ -1,5 +1,6 @@
 package com.medlab.medlabtest.di.component
 
+import android.app.Application
 import com.medlab.medlabtest.AppClass
 import com.medlab.medlabtest.di.modules.ActivitiesModule
 import com.medlab.medlabtest.di.modules.AppModule
@@ -22,7 +23,7 @@ interface AppComponent {
     interface Builder {
 
         @BindsInstance
-        fun application(appClass: AppClass): Builder
+        fun application(app: Application): Builder
 
         fun build(): AppComponent
     }
