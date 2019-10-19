@@ -17,7 +17,7 @@ constructor(
         mRemoteDataSource.getMovieItems(page, object : DataSource.GetMovieItemsCallback {
             override fun onSuccess(items: ArrayList<MovieItem>) {
                 for (item: MovieItem in items) {
-                    item.isFavorite = mLocalDataSource.isFavourite(item)
+                    item.isFavorite = mLocalDataSource.isFavorite(item)
                 }
                 callback.onSuccess(items)
             }

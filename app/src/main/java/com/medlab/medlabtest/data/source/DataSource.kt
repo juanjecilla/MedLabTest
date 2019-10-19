@@ -1,5 +1,7 @@
 package com.medlab.medlabtest.data.source
 
+import com.google.gson.JsonElement
+import com.google.gson.JsonObject
 import com.medlab.medlabtest.data.model.MovieItem
 
 abstract class DataSource {
@@ -22,6 +24,12 @@ abstract class DataSource {
 
     interface FavouriteCallback {
         fun onSuccess(results: ArrayList<MovieItem>)
+
+        fun onFailure(throwable: Throwable)
+    }
+
+    interface TheMovieDbCallback {
+        fun onSuccess(results: JsonElement)
 
         fun onFailure(throwable: Throwable)
     }

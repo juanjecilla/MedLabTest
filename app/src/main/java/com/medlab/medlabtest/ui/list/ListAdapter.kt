@@ -128,7 +128,9 @@ class ListAdapter (
         override fun bindItem(item: MovieItem) {
             this.mMovieItem = item
 
-            Picasso.get().load(item.posterPath).into(itemView.item_image)
+            Picasso.get().load("https://image.tmdb.org/t/p/w185_and_h278_bestv2/" + item.posterPath).into(itemView.item_image)
+            itemView.item_title.text = item.title
+
 
             if (item.isFavorite) {
                 itemView.item_fav.setImageDrawable(

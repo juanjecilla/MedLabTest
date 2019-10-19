@@ -19,7 +19,7 @@ class LocalDataSource @Inject constructor(private val mRealm: Realm) {
     fun getFavourites(callback: DataSource.FavouriteCallback) {
         val results = ArrayList<MovieItem>(
             mRealm.where(MovieItem::class.java).equalTo(
-                "isFavourite",
+                "isFavorite",
                 true
             ).sort("updatedAt", Sort.DESCENDING).findAll()
         )
@@ -35,7 +35,7 @@ class LocalDataSource @Inject constructor(private val mRealm: Realm) {
         EventBus.getDefault().post(FavUpdatedMessage(UUID.randomUUID().toString(), movieItem))
     }
 
-    fun isFavourite(movieItem: MovieItem): Boolean {
+    fun isFavorite(movieItem: MovieItem): Boolean {
         val item = mRealm.where(MovieItem::class.java).equalTo("id", movieItem.id).findFirst()
         return item != null
     }
@@ -43,7 +43,7 @@ class LocalDataSource @Inject constructor(private val mRealm: Realm) {
 
     private fun removeUnusedFavourites() {
         mRealm.beginTransaction()
-        val results = mRealm.where(MovieItem::class.java).equalTo("isFavourite", false).findAll()
+        val results = mRealm.where(MovieItem::class.java).equalTo("isFavorite", false).findAll()
         results.deleteAllFromRealm()
         mRealm.commitTransaction()
     }
