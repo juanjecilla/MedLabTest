@@ -17,7 +17,7 @@ import com.medlab.medlabtest.utils.Properties
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_favs.*
 import kotlinx.android.synthetic.main.fragment_favs.view.*
-import kotlinx.android.synthetic.main.fragment_list.empty_list
+import kotlinx.android.synthetic.main.fragment_movie_list.empty_list
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

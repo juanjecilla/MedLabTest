@@ -1,5 +1,6 @@
 package com.medlab.medlabtest.data.source.local
 
+import com.medlab.medlabtest.data.callbacks.OnDefaultCallback
 import com.medlab.medlabtest.data.model.MovieItem
 import com.medlab.medlabtest.data.model.messages.FavUpdatedMessage
 import com.medlab.medlabtest.data.source.DataSource
@@ -28,6 +29,17 @@ class LocalDataSource @Inject constructor(private val mRealm: Realm) {
         mRealm.commitTransaction()
 
         EventBus.getDefault().post(FavUpdatedMessage(UUID.randomUUID().toString(), movieItem))
+    }
+
+    fun toggleFavorite(movieItem: MovieItem, callback: OnDefaultCallback<Boolean>) {
+        mRealm.beginTransaction()
+        movieItem.isFavorite = !movieItem.isFavorite
+        mRealm.copyToRealmOrUpdate(movieItem)
+        mRealm.commitTransaction()
+
+        EventBus.getDefault().post(FavUpdatedMessage(UUID.randomUUID().toString(), movieItem))
+
+        callback.onSuccess(movieItem.isFavorite)
     }
 
     fun isFavorite(movieItem: MovieItem): Boolean {

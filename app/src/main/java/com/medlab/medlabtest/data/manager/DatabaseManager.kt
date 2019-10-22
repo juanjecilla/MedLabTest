@@ -1,5 +1,6 @@
 package com.medlab.medlabtest.data.manager
 
+import com.medlab.medlabtest.data.callbacks.OnDefaultCallback
 import com.medlab.medlabtest.data.model.MovieItem
 import com.medlab.medlabtest.data.source.DataSource
 import com.medlab.medlabtest.data.source.local.LocalDataSource
@@ -42,5 +43,9 @@ constructor(
 
     fun toggleFavourite(movieItem: MovieItem) {
         mLocalDataSource.toggleFavorite(movieItem)
+    }
+
+    fun toggleFavourite(movieItem: MovieItem, callback: OnDefaultCallback<Boolean>) {
+        mLocalDataSource.toggleFavorite(movieItem, callback)
     }
 }
