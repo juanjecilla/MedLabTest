@@ -1,4 +1,4 @@
-package com.themoviedbexample.domain
+package com.themoviedbexample.presentation
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

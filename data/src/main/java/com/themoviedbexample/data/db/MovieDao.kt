@@ -10,13 +10,13 @@ import io.reactivex.Flowable
 @Dao
 interface MovieDao {
 
-    @Query("Select * from news_articles")
+    @Query("Select * from movie_items")
     fun getAllArticles(): Flowable<List<MovieItemData>?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveAllArticles(articles: List<MovieItemData>)
 
-    @Query("DELETE FROM news_articles")
+    @Query("DELETE FROM movie_items")
     fun clear()
 
 }

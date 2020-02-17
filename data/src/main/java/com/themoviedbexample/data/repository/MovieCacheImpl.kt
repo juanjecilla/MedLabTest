@@ -15,7 +15,7 @@ class MovieCacheImpl(
 
     private val dao: MovieDao = database.getArticlesDao()
 
-    override fun getNews(): Flowable<MovieSourcesEntity> {
+    override fun getMovieItems(): Flowable<MovieSourcesEntity> {
         return dao.getAllArticles().map { it ->
             dataToEntityMapper.mapToEntity(it)
         }

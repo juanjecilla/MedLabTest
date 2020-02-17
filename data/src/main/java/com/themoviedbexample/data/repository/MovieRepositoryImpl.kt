@@ -10,18 +10,18 @@ class MovieRepositoryImpl(
 ) : MovieRepository {
 
     override fun getLocalMovieItems(): Flowable<MovieSourcesEntity> {
-        return cache.getNews()
+        return cache.getMovieItems()
     }
 
     override fun getRemoteMovieItems(): Flowable<MovieSourcesEntity> {
-        return remote.getNews()
+        return remote.getMovieItems()
     }
 
     override fun getMovieItems(): Flowable<MovieSourcesEntity> {
-        val updateNewsFlowable = remote.getNews()
-        return cache.getNews()
-            .mergeWith(updateNewsFlowable.doOnNext { remoteNews ->
-                cache.saveArticles(remoteNews)
+        val updateMovieItemsFlowable = remote.getMovieItems()
+        return cache.getMovieItems()
+            .mergeWith(updateMovieItemsFlowable.doOnNext { remoteMovieItems ->
+                cache.saveArticles(remoteMovieItems)
             })
     }
 }

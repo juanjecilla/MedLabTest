@@ -4,5 +4,5 @@ import com.themoviedbexample.domain.entities.MovieSourcesEntity
 import io.reactivex.Flowable
 
 interface MovieDataStore {
-    fun getNews(): Flowable<MovieSourcesEntity>
+    fun getMovieItems(): Flowable<MovieSourcesEntity>
 }

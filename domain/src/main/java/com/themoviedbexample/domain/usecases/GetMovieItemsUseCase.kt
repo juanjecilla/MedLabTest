@@ -11,10 +11,6 @@ class GetMovieItemsUseCase(
     private val repositories: MovieRepository
 ) : BaseFlowableUseCase<MovieSourcesEntity>(transformer) {
 
-    companion object {
-        private const val PARAM_FILE_NEWS_ENTITY = "param:NewsStatus"
-    }
-
     override fun createFlowable(data: Map<String, Any>?): Flowable<MovieSourcesEntity> {
         return repositories.getMovieItems()
     }

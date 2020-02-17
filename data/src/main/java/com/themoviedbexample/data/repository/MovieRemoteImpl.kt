@@ -7,12 +7,12 @@ import io.reactivex.Flowable
 
 class MovieRemoteImpl constructor(private val api: RemoteMovieApi) : MovieDataStore {
 
-    private val newsMapper =
+    private val mMovieItemsMapper =
         MovieDataEntityMapper()
 
-    override fun getNews(): Flowable<MovieSourcesEntity> {
+    override fun getMovieItems(): Flowable<MovieSourcesEntity> {
 
-        return api.getNews().map { newsMapper.mapToEntity(it) }
+        return api.getMovieItems().map { mMovieItemsMapper.mapToEntity(it) }
     }
 
 }
