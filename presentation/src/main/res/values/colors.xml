@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#9d9da3</color>
+    <color name="colorAccent">#fac033</color>
+    <color name="colorTextItemTitle">#403d5b</color>
+    <color name="colorTextItemSubitle">#9d9da3</color>
+    <color name="colorAlpha15">#0B1B1B2A</color>
+    <color name="colorAlpha30">#481B1B2A</color>
+    <color name="colorAlpha50">#801B1B2A</color>
+    <color name="colorMainGray">#9d9da3</color>
+    <color name="colorMainDarkGray">#D91B1B2A</color>
+    <color name="colorGrayDivider">#e5e5e5</color>
+    <color name="colorCardTitle">#403d5b</color>
+    <color name="colorCardSubitle">#9d9da3</color>
+    <color name="colorBackgroundSplash">#FBCB6A</color>
+    <color name="colorIconSelected">#403D5B</color>
 </resources>

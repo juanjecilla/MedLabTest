@@ -38,10 +38,11 @@ dependencies {
     implementation rootProject.ext.retrofitLoggingInterceptors
     implementation rootProject.ext.retrofitRxJava2Adapter
     implementation rootProject.ext.room
+    implementation rootProject.ext.koin
 
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'co.lujun:androidtagview:1.1.4'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
@@ -51,9 +52,10 @@ dependencies {
     testImplementation rootProject.ext.junit
     testImplementation rootProject.ext.mockito
     androidTestImplementation rootProject.ext.androidTestRunner
-    androidTestImplementation 'org.mockito:mockito-android:2.18.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
-    implementation rootProject.ext.koin
+    androidTestImplementation 'org.mockito:mockito-android:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha03'
+
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.2'
 
     implementation project(':data')
     implementation project(':domain')
