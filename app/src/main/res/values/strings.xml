@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MedLabTest</string>
+    <string name="app_name">TheMovieDbExample</string>
     <string name="action_settings">Settings</string>
     <string name="empty_results_label">Empty list!</string>
     <string name="base_url_service">https://api.themoviedb.org</string>
