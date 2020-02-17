@@ -1,8 +1,8 @@
 package com.example.themoviedbexample.data.source.remote
 
 import android.util.Log
-import com.google.gson.JsonElement
 import com.example.themoviedbexample.data.source.DataSource
+import com.google.gson.JsonElement
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

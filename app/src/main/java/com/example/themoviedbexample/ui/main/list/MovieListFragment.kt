@@ -16,8 +16,8 @@ import com.example.themoviedbexample.ui.detail.DetailActivity
 import com.example.themoviedbexample.utils.EndlessRecyclerViewScrollListener
 import com.example.themoviedbexample.utils.Properties
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_list.*
-import kotlinx.android.synthetic.main.fragment_list.view.*
+import kotlinx.android.synthetic.main.fragment_movie_list.*
+import kotlinx.android.synthetic.main.fragment_movie_list.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -30,17 +30,9 @@ class MovieListFragment : BaseScrollingView(), MovieListContract.View, OnMovieIt
     lateinit var mPresenter: MovieListPresenter
 
     private lateinit var mAdapterMovie: MovieListAdapter
-    private var mLayoutManager = LinearLayoutManager(
-        context,
-        LinearLayoutManager.VERTICAL,
-        false
-    )
+    private var mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     private var mEndlessRecyclerViewScrollListener =
-        object : EndlessRecyclerViewScrollListener(
-            mLayoutManager,
-            STARTING_PAGE_INDEX
-        ) {
-
+        object : EndlessRecyclerViewScrollListener(mLayoutManager, STARTING_PAGE_INDEX) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 mPresenter.getMovies(page)
             }
@@ -60,7 +52,7 @@ class MovieListFragment : BaseScrollingView(), MovieListContract.View, OnMovieIt
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        return inflater.inflate(R.layout.fragment_movie_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,10 +60,11 @@ class MovieListFragment : BaseScrollingView(), MovieListContract.View, OnMovieIt
 
         view.movie_list.adapter = mAdapterMovie
         view.movie_list.isNestedScrollingEnabled = false
+        mLayoutManager.stackFromEnd = false
         view.movie_list.layoutManager = mLayoutManager
         view.movie_list.addOnScrollListener(mEndlessRecyclerViewScrollListener)
 
-        mPresenter.getMovies(0)
+        mPresenter.getMovies(STARTING_PAGE_INDEX)
     }
 
     override fun onStart() {
@@ -109,7 +102,7 @@ class MovieListFragment : BaseScrollingView(), MovieListContract.View, OnMovieIt
 
     override fun showMovieDetail(movieItem: MovieItem) {
         val intent = Intent(context, DetailActivity::class.java)
-        intent.putExtra(Properties.EXTRA_MOVIE_ID, movieItem.id)
+        intent.putExtra(Properties.EXTRA_MOVIE, movieItem)
         startActivity(intent)
     }
 

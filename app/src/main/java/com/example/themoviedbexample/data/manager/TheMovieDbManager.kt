@@ -1,13 +1,13 @@
 package com.example.themoviedbexample.data.manager
 
-import com.google.gson.Gson
-import com.google.gson.JsonElement
 import com.example.themoviedbexample.data.model.MovieDetail
 import com.example.themoviedbexample.data.model.MovieItem
 import com.example.themoviedbexample.data.source.DataSource
 import com.example.themoviedbexample.data.source.remote.APICodes
 import com.example.themoviedbexample.data.source.remote.TheMovieDbAPI
 import com.example.themoviedbexample.data.source.remote.TheMovieDbRequest
+import com.google.gson.Gson
+import com.google.gson.JsonElement
 import javax.inject.Inject
 import javax.inject.Singleton
 

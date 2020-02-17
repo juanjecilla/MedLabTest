@@ -1,5 +1,6 @@
 package com.example.themoviedbexample.data.manager
 
+import com.example.themoviedbexample.data.callbacks.OnDefaultCallback
 import com.example.themoviedbexample.data.model.MovieItem
 import com.example.themoviedbexample.data.source.DataSource
 import com.example.themoviedbexample.data.source.local.LocalDataSource
@@ -42,5 +43,9 @@ constructor(
 
     fun toggleFavourite(movieItem: MovieItem) {
         mLocalDataSource.toggleFavorite(movieItem)
+    }
+
+    fun toggleFavourite(movieItem: MovieItem, callback: OnDefaultCallback<Boolean>) {
+        mLocalDataSource.toggleFavorite(movieItem, callback)
     }
 }

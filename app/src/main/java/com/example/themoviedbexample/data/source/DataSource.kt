@@ -1,8 +1,8 @@
 package com.example.themoviedbexample.data.source
 
-import com.google.gson.JsonElement
 import com.example.themoviedbexample.data.model.MovieDetail
 import com.example.themoviedbexample.data.model.MovieItem
+import com.google.gson.JsonElement
 
 abstract class DataSource {
 

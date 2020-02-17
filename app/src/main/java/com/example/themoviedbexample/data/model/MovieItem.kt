@@ -1,8 +1,8 @@
 package com.example.themoviedbexample.data.model
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import com.example.themoviedbexample.base.BaseItemList
+import com.google.gson.annotations.SerializedName
 import io.realm.RealmModel
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.RealmClass
