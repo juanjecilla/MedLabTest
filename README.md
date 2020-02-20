@@ -23,3 +23,9 @@ Second application follows Clean architecture organized in three modules:
 - Room
 - Retrofit
 - Others (UI)
+
+## Next Steps
+- Migrate app module to Clean Architecture.
+- Create tests for MVP pattern.
+- Clone all features from app module in the presentation module.
+- Improve application functionalities.

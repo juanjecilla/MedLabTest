@@ -7,7 +7,7 @@ import com.themoviedbexample.domain.entities.MovieSourcesEntity
 /**
  * Created by Yossi Segev on 09/02/2018.
  */
-class TestUtils {
+class TestEntityUtils {
 
     companion object {
         fun getTestMovieEntity(id: Long): MovieDetailEntity {
@@ -26,17 +26,13 @@ class TestUtils {
             )
         }
 
-        fun getTestMovieItemsEntities(size: Int): List<MovieItemEntity> {
-            val entities = ArrayList<MovieItemEntity>()
-            for (i in 0 until size) {
-                val entity = MovieItemEntity(
-                    id = i.toLong(),
-                    title = "Title $i",
-                    posterPath = ""
-                )
-                entities.add(entity)
+        private fun getTestMovieItemsEntities(size: Int): List<MovieItemEntity> {
+            return (0..size).map {
+                MovieItemEntity(
+                    id = it.toLong(),
+                    title = "Title $it",
+                    posterPath = "")
             }
-            return entities
         }
     }
 }

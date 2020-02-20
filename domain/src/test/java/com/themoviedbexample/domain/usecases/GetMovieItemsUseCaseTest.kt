@@ -1,7 +1,7 @@
 package com.themoviedbexample.domain.usecases
 
 import com.themoviedbexample.domain.common.TestTransformer
-import com.themoviedbexample.domain.common.TestUtils
+import com.themoviedbexample.domain.common.TestEntityUtils
 import com.themoviedbexample.domain.common.mock
 import com.themoviedbexample.domain.repositories.MovieRepository
 import io.reactivex.Observable
@@ -11,17 +11,16 @@ import org.mockito.Mockito
 
 class GetMovieItemsUseCaseTest {
 
-    private val mRepository: MovieRepository = mock<MovieRepository>()
-
+    private lateinit var mRepository: MovieRepository
 
     @Before
     fun setUp() {
-
+        mRepository = mock<MovieRepository>()
     }
 
     @Test
     fun getMovieItems() {
-        val movieSourceEntity = TestUtils.getTestMovieSourceEntity(20)
+        val movieSourceEntity = TestEntityUtils.getTestMovieSourceEntity(20)
         val getMovieItemsUseCase = GetMovieItemsUseCase(TestTransformer(), mRepository)
 
         Mockito.`when`(mRepository.getMovieItems()).thenReturn(Observable.just(movieSourceEntity))
