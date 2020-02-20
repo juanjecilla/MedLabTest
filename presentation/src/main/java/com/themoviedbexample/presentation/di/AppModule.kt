@@ -9,10 +9,13 @@ import com.themoviedbexample.data.repository.MovieCacheImpl
 import com.themoviedbexample.data.repository.MovieRemoteImpl
 import com.themoviedbexample.data.repository.MovieRepositoryImpl
 import com.themoviedbexample.domain.repositories.MovieRepository
+import com.themoviedbexample.domain.usecases.GetMovieDetailUseCase
 import com.themoviedbexample.domain.usecases.GetMovieItemsUseCase
 import com.themoviedbexample.presentation.common.AsyncFlowableTransformer
+import com.themoviedbexample.presentation.mappers.MovieDetailEntityMapper
 import com.themoviedbexample.presentation.mappers.MovieSourceEntityMapper
-import com.themoviedbexample.presentation.movielist.MovieListViewModel
+import com.themoviedbexample.presentation.ui.detail.DetailViewModel
+import com.themoviedbexample.presentation.ui.movielist.MovieListViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -30,8 +33,14 @@ val mRepositoryModules = module {
 }
 
 val mUseCaseModules = module {
-    factory(name = "getMovieItemsUseCase") {
+    factory(name = GET_MOVIE_ITEMS_USECASE) {
         GetMovieItemsUseCase(
+            transformer = AsyncFlowableTransformer(),
+            repositories = get()
+        )
+    }
+    factory(name = GET_MOVIE_DETAIL_USECASE) {
+        GetMovieDetailUseCase(
             transformer = AsyncFlowableTransformer(),
             repositories = get()
         )
@@ -56,8 +65,14 @@ val mLocalModules = module {
 val mViewModels = module {
     viewModel {
         MovieListViewModel(
-            getMovieItemsUseCase = get(GET_MOVIE_ITEMS_USECASE),
-            mapper = MovieSourceEntityMapper()
+            mGetMovieItemsUseCase = get(GET_MOVIE_ITEMS_USECASE),
+            mMapper = MovieSourceEntityMapper()
+        )
+    }
+    viewModel {
+        DetailViewModel(
+            mGetMovieDetailUseCase = get(GET_MOVIE_DETAIL_USECASE),
+            mMapper = MovieDetailEntityMapper()
         )
     }
 }
@@ -66,5 +81,6 @@ private const val BASE_URL = "https://api.themoviedb.org/"
 private const val RETROFIT_INSTANCE = "Retrofit"
 private const val API = "Api"
 private const val GET_MOVIE_ITEMS_USECASE = "getMovieItemsUseCase"
+private const val GET_MOVIE_DETAIL_USECASE = "getMovieDetailUseCase"
 private const val REMOTE = "remote response"
 private const val DATABASE = "database"

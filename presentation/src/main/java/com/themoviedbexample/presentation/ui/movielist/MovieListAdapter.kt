@@ -1,4 +1,4 @@
-package com.themoviedbexample.presentation.movielist
+package com.themoviedbexample.presentation.ui.movielist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +9,12 @@ import com.themoviedbexample.presentation.R
 import com.themoviedbexample.presentation.entities.MovieItem
 import kotlinx.android.synthetic.main.item_movie.view.*
 
-class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
+class MovieListAdapter(
+    private val mListener: OnMovieItemListener
+) :
+    RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
 
-    var mData = mutableListOf<MovieItem>()
+    private var mData = mutableListOf<MovieItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
@@ -26,14 +29,22 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieListViewHold
         holder.bind(mData[position])
     }
 
-    class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private lateinit var mMovieItem: MovieItem
+
+        init {
+            itemView.setOnClickListener { mListener.showMovieDetail(mMovieItem) }
+        }
 
         fun bind(item: MovieItem) {
+            mMovieItem = item
+
             with(itemView) {
                 item_title.text = item.title
-                Picasso.get().load("https://image.tmdb.org/t/p/w185_and_h278_bestv2/" + item.posterPath)
+                Picasso.get()
+                    .load("https://image.tmdb.org/t/p/w185_and_h278_bestv2/" + item.posterPath)
                     .into(item_image)
-
             }
         }
     }

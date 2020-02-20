@@ -1,4 +1,4 @@
-package com.themoviedbexample.presentation.movielist
+package com.themoviedbexample.presentation.ui.movielist
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -12,8 +12,8 @@ import com.themoviedbexample.presentation.entities.MovieSources
 import com.themoviedbexample.presentation.entities.Status
 
 class MovieListViewModel(
-    private val getMovieItemsUseCase: GetMovieItemsUseCase,
-    private val mapper: Mapper<MovieSourcesEntity, MovieSources>
+    private val mGetMovieItemsUseCase: GetMovieItemsUseCase,
+    private val mMapper: Mapper<MovieSourcesEntity, MovieSources>
 ) : BaseViewModel() {
 
     companion object {
@@ -23,13 +23,13 @@ class MovieListViewModel(
     var mMovieItems = MutableLiveData<Data<MovieSources>>()
 
     fun fetchMovieItems() {
-        val disposable = getMovieItemsUseCase.getMovieItems()
-            .flatMap { mapper.Flowable(it) }
+        val disposable = mGetMovieItemsUseCase.getMovieItems()
+            .flatMap { mMapper.Flowable(it) }
             .subscribe({ response ->
                 Log.d(TAG, "On Next Called")
                 mMovieItems.value = Data(responseType = Status.SUCCESSFUL, data = response)
             }, { error ->
-                Log.d(TAG, "On Error Called")
+                Log.d(TAG, "On Error Called " + error.message)
                 mMovieItems.value = Data(responseType = Status.ERROR, error = Error(error.message))
             }, {
                 Log.d(TAG, "On Complete Called")

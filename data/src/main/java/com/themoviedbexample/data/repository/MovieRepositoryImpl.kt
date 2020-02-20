@@ -1,5 +1,6 @@
 package com.themoviedbexample.data.repository
 
+import com.themoviedbexample.domain.entities.MovieDetailEntity
 import com.themoviedbexample.domain.entities.MovieSourcesEntity
 import com.themoviedbexample.domain.repositories.MovieRepository
 import io.reactivex.Flowable
@@ -23,5 +24,9 @@ class MovieRepositoryImpl(
             .mergeWith(updateMovieItemsFlowable.doOnNext { remoteMovieItems ->
                 cache.saveArticles(remoteMovieItems)
             })
+    }
+
+    override fun getMovieDetail(id: String): Flowable<MovieDetailEntity> {
+        return remote.getMovieDetail(id)
     }
 }

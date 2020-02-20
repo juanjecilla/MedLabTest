@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.themoviedbexample.data.entitites.MovieDetailData
 import com.themoviedbexample.data.entitites.MovieItemData
 import io.reactivex.Flowable
 
@@ -18,5 +19,8 @@ interface MovieDao {
 
     @Query("DELETE FROM movie_items")
     fun clear()
+
+    @Query("Select * from movie_detail Where id = :id")
+    fun getMovieDetail(id : String): Flowable<MovieDetailData?>
 
 }

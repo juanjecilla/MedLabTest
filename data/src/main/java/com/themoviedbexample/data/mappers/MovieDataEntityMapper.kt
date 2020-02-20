@@ -1,7 +1,9 @@
 package com.themoviedbexample.data.mappers
 
+import com.themoviedbexample.data.entitites.MovieDetailData
 import com.themoviedbexample.data.entitites.MovieItemData
 import com.themoviedbexample.data.entitites.MovieItemSourcesData
+import com.themoviedbexample.domain.entities.MovieDetailEntity
 import com.themoviedbexample.domain.entities.MovieItemEntity
 import com.themoviedbexample.domain.entities.MovieSourcesEntity
 
@@ -25,5 +27,12 @@ class MovieDataEntityMapper constructor() {
         id = response.id,
         title = response.title,
         posterPath = response.posterPath
+    )
+
+    fun mapToEntity(data: MovieDetailData?): MovieDetailEntity? = MovieDetailEntity(
+        id = data?.id,
+        title= data?.title,
+        posterPath = data?.posterPath,
+        overview = data?.overview
     )
 }

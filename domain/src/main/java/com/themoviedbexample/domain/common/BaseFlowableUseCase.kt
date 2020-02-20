@@ -7,6 +7,7 @@ abstract class BaseFlowableUseCase<T>(private val transformer: FlowableRxTransfo
     abstract fun createFlowable(data: Map<String, Any>? = null): Flowable<T>
 
     fun single(withData: Map<String, Any>? = null): Flowable<T> {
-        return createFlowable(withData).compose(transformer)
+        val a = createFlowable(withData)
+        return a.compose(transformer)
     }
 }
