@@ -6,7 +6,7 @@ import com.themoviedbexample.data.mappers.MovieDataEntityMapper
 import com.themoviedbexample.data.mappers.MovieEntityDataMapper
 import com.themoviedbexample.domain.entities.MovieDetailEntity
 import com.themoviedbexample.domain.entities.MovieSourcesEntity
-import io.reactivex.Flowable
+import io.reactivex.Observable
 
 class MovieCacheImpl(
     private val database: MovieDatabase,
@@ -16,13 +16,13 @@ class MovieCacheImpl(
 
     private val dao: MovieDao = database.getMoviesDao()
 
-    override fun getMovieItems(): Flowable<MovieSourcesEntity> {
+    override fun getMovieItems(): Observable<MovieSourcesEntity> {
         return dao.getAllArticles().map {
             dataToEntityMapper.mapToEntity(it)
         }
     }
 
-    override fun getMovieDetail(id: String): Flowable<MovieDetailEntity> {
+    override fun getMovieDetail(id: Long): Observable<MovieDetailEntity> {
         return dao.getMovieDetail(id).map { dataToEntityMapper.mapToEntity(it) }
     }
 

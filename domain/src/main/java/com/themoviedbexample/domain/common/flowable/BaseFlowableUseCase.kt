@@ -1,4 +1,4 @@
-package com.themoviedbexample.domain.common
+package com.themoviedbexample.domain.common.flowable
 
 import io.reactivex.Flowable
 

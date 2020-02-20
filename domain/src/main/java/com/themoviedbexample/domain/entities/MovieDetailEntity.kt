@@ -4,5 +4,6 @@ data class MovieDetailEntity(
     var id: Long? = null,
     var title: String? = null,
     var posterPath: String? = null,
-    var overview: String? = null)
+    var overview: String? = null
+)
 

@@ -1,22 +1,22 @@
 package com.themoviedbexample.domain.usecases
 
-import com.themoviedbexample.domain.common.BaseFlowableUseCase
-import com.themoviedbexample.domain.common.FlowableRxTransformer
+import com.themoviedbexample.domain.common.BaseUseCase
+import com.themoviedbexample.domain.common.Transformer
 import com.themoviedbexample.domain.entities.MovieSourcesEntity
 import com.themoviedbexample.domain.repositories.MovieRepository
-import io.reactivex.Flowable
+import io.reactivex.Observable
 
 class GetMovieItemsUseCase(
-    private val transformer: FlowableRxTransformer<MovieSourcesEntity>,
+    transformer: Transformer<MovieSourcesEntity>,
     private val repositories: MovieRepository
-) : BaseFlowableUseCase<MovieSourcesEntity>(transformer) {
+) : BaseUseCase<MovieSourcesEntity>(transformer) {
 
-    override fun createFlowable(data: Map<String, Any>?): Flowable<MovieSourcesEntity> {
+    override fun createObservable(data: Map<String, Any>?): Observable<MovieSourcesEntity> {
         return repositories.getMovieItems()
     }
 
-    fun getMovieItems(): Flowable<MovieSourcesEntity> {
-        val data = HashMap<String, String>()
-        return single(data)
+    fun getMovieItems(): Observable<MovieSourcesEntity> {
+        val data = HashMap<String, Any>()
+        return observable(data)
     }
 }

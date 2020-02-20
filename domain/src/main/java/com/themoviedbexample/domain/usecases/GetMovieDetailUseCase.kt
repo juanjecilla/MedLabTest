@@ -1,24 +1,27 @@
 package com.themoviedbexample.domain.usecases
 
-import com.themoviedbexample.domain.common.BaseFlowableUseCase
-import com.themoviedbexample.domain.common.FlowableRxTransformer
+import com.themoviedbexample.domain.common.BaseUseCase
+import com.themoviedbexample.domain.common.Transformer
 import com.themoviedbexample.domain.entities.MovieDetailEntity
-import com.themoviedbexample.domain.entities.MovieSourcesEntity
 import com.themoviedbexample.domain.repositories.MovieRepository
-import io.reactivex.Flowable
+import io.reactivex.Observable
 
 class GetMovieDetailUseCase(
-    transformer: FlowableRxTransformer<MovieDetailEntity>,
+    transformer: Transformer<MovieDetailEntity>,
     private val repositories: MovieRepository
-) : BaseFlowableUseCase<MovieDetailEntity>(transformer) {
+) : BaseUseCase<MovieDetailEntity>(transformer) {
 
-    override fun createFlowable(data: Map<String, Any>?): Flowable<MovieDetailEntity> {
-        return repositories.getMovieDetail(data?.get("id") as String)
+    override fun createObservable(data: Map<String, Any>?): Observable<MovieDetailEntity> {
+        return repositories.getMovieDetail(data?.get(ID_KEY) as Long)
     }
 
-    fun getMovieDetail(id: String): Flowable<MovieDetailEntity> {
-        val data = HashMap<String, String>()
-        data["id"] = id
-        return single(data)
+    fun getMovieDetail(id: Long): Observable<MovieDetailEntity> {
+        val data = HashMap<String, Long>()
+        data[ID_KEY] = id
+        return observable(data)
+    }
+
+    companion object {
+        private const val ID_KEY = "id"
     }
 }

@@ -1,47 +1,35 @@
 package com.themoviedbexample.domain.usecases
 
-import com.themoviedbexample.domain.common.FlowableRxTransformer
+import com.themoviedbexample.domain.common.TestUtils
+import com.themoviedbexample.domain.common.TestTransformer
 import com.themoviedbexample.domain.common.mock
-import com.themoviedbexample.domain.common.whenever
-import com.themoviedbexample.domain.entities.MovieDetailEntity
 import com.themoviedbexample.domain.repositories.MovieRepository
-import io.reactivex.Flowable
-import io.reactivex.subscribers.TestSubscriber
+import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito
 
 class GetMovieDetailUseCaseTest {
 
-
-    private val transformer = mock<FlowableRxTransformer<MovieDetailEntity>>()
-    private val repository = mock<MovieRepository>()
-
-    private val getMovieDetailUseCase by lazy { GetMovieDetailUseCase(transformer, repository) }
+    private val mRepository: MovieRepository= mock<MovieRepository>()
 
 
     @Before
-    fun setUp() {
-    }
+    fun setUp(){
 
-    @Test
-    fun createFlowable() {
-        val flowable = mock<Flowable<MovieDetailEntity>>()
-        whenever(repository.getMovieDetail(anyString()))
-            .thenReturn(flowable)
-
-        val ret = getMovieDetailUseCase.getMovieDetail("")
-
-        val testSubscriber = getMovieDetailUseCase.getMovieDetail("dummy").test()
-
-        testSubscriber.awaitTerminalEvent()
-
-        testSubscriber.assertComplete()
     }
 
     @Test
     fun getMovieDetail() {
+        val movieEntity = TestUtils.getTestMovieEntity(100)
+        val getMovieDetailUseCase = GetMovieDetailUseCase(TestTransformer(), mRepository)
 
+        Mockito.`when`(mRepository.getMovieDetail(100)).thenReturn(Observable.just(movieEntity))
+
+        getMovieDetailUseCase.getMovieDetail(100).test()
+            .assertValue { returnedMovieEntity ->
+                returnedMovieEntity.id == 100L
+            }
+            .assertComplete()
     }
 }

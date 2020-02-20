@@ -24,7 +24,7 @@ class MovieListViewModel(
 
     fun fetchMovieItems() {
         val disposable = mGetMovieItemsUseCase.getMovieItems()
-            .flatMap { mMapper.Flowable(it) }
+            .flatMap { mMapper.observable(it) }
             .subscribe({ response ->
                 Log.d(TAG, "On Next Called")
                 mMovieItems.value = Data(responseType = Status.SUCCESSFUL, data = response)

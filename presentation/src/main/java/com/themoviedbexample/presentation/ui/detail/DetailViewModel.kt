@@ -22,9 +22,9 @@ class DetailViewModel(
 
     var mMovieDetail = MutableLiveData<Data<MovieDetail>>()
 
-    fun fetchMovieDetail(id:String) {
+    fun fetchMovieDetail(id: Long) {
         val disposable = mGetMovieDetailUseCase.getMovieDetail(id)
-            .flatMap { mMapper.Flowable(it) }
+            .flatMap { mMapper.observable(it) }
             .subscribe({ response ->
                 Log.d(TAG, "On Next Called")
                 mMovieDetail.value = Data(responseType = Status.SUCCESSFUL, data = response)

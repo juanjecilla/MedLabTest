@@ -1,10 +1,23 @@
 package com.themoviedbexample.domain.common
 
-abstract class Mapper<in T, E> {
+import com.themoviedbexample.domain.entities.Optional
+import io.reactivex.Observable
 
-    abstract fun mapFrom(from: T): E
+abstract class Mapper<in E, T> {
 
-    fun Flowable(from: T) = io.reactivex.Flowable.fromCallable { mapFrom(from) }
+    abstract fun mapFrom(from: E): T
 
-    fun Flowable(from: List<T>) = io.reactivex.Flowable.fromCallable { from.map { mapFrom(it) } }
+    fun mapOptional(from: Optional<E>): Optional<T> {
+        from.value?.let {
+            return Optional.of(mapFrom(it))
+        } ?: return Optional.empty()
+    }
+
+    fun observable(from: E): Observable<T> {
+        return Observable.fromCallable { mapFrom(from) }
+    }
+
+    fun observable(from: List<E>): Observable<List<T>> {
+        return Observable.fromCallable { from.map { mapFrom(it) } }
+    }
 }

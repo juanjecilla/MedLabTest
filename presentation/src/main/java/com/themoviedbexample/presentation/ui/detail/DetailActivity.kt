@@ -8,10 +8,8 @@ import com.squareup.picasso.Picasso
 import com.themoviedbexample.presentation.R
 import com.themoviedbexample.presentation.common.Properties
 import com.themoviedbexample.presentation.entities.Status
-import com.themoviedbexample.presentation.ui.movielist.MovieListViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
-import kotlinx.android.synthetic.main.item_movie.view.*
 import kotlinx.android.synthetic.main.progress_bar.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -33,7 +31,7 @@ class DetailActivity : AppCompatActivity() {
 
         val movieId = intent.getLongExtra(Properties.EXTRA_MOVIE, 0)
 
-        mMovieListViewModel.fetchMovieDetail(movieId.toString())
+        mMovieListViewModel.fetchMovieDetail(movieId)
     }
 
 

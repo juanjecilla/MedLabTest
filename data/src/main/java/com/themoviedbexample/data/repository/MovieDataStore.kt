@@ -2,9 +2,9 @@ package com.themoviedbexample.data.repository
 
 import com.themoviedbexample.domain.entities.MovieDetailEntity
 import com.themoviedbexample.domain.entities.MovieSourcesEntity
-import io.reactivex.Flowable
+import io.reactivex.Observable
 
 interface MovieDataStore {
-    fun getMovieItems(): Flowable<MovieSourcesEntity>
-    fun getMovieDetail(id: String): Flowable<MovieDetailEntity>
+    fun getMovieItems(): Observable<MovieSourcesEntity>
+    fun getMovieDetail(id: Long): Observable<MovieDetailEntity>
 }

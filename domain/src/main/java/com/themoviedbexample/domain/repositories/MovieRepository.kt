@@ -2,13 +2,13 @@ package com.themoviedbexample.domain.repositories
 
 import com.themoviedbexample.domain.entities.MovieDetailEntity
 import com.themoviedbexample.domain.entities.MovieSourcesEntity
-import io.reactivex.Flowable
+import io.reactivex.Observable
 
 interface MovieRepository {
 
-    fun getMovieItems(): Flowable<MovieSourcesEntity>
-    fun getRemoteMovieItems(): Flowable<MovieSourcesEntity>
-    fun getLocalMovieItems(): Flowable<MovieSourcesEntity>
+    fun getMovieItems(): Observable<MovieSourcesEntity>
+    fun getRemoteMovieItems(): Observable<MovieSourcesEntity>
+    fun getLocalMovieItems(): Observable<MovieSourcesEntity>
 
-    fun getMovieDetail(id: String): Flowable<MovieDetailEntity>
+    fun getMovieDetail(id: Long): Observable<MovieDetailEntity>
 }

@@ -11,7 +11,8 @@ import com.themoviedbexample.data.repository.MovieRepositoryImpl
 import com.themoviedbexample.domain.repositories.MovieRepository
 import com.themoviedbexample.domain.usecases.GetMovieDetailUseCase
 import com.themoviedbexample.domain.usecases.GetMovieItemsUseCase
-import com.themoviedbexample.presentation.common.AsyncFlowableTransformer
+import com.themoviedbexample.presentation.common.AsyncObservableTransformer
+import com.themoviedbexample.presentation.common.flowable.AsyncFlowableTransformer
 import com.themoviedbexample.presentation.mappers.MovieDetailEntityMapper
 import com.themoviedbexample.presentation.mappers.MovieSourceEntityMapper
 import com.themoviedbexample.presentation.ui.detail.DetailViewModel
@@ -35,13 +36,13 @@ val mRepositoryModules = module {
 val mUseCaseModules = module {
     factory(name = GET_MOVIE_ITEMS_USECASE) {
         GetMovieItemsUseCase(
-            transformer = AsyncFlowableTransformer(),
+            transformer = AsyncObservableTransformer(),
             repositories = get()
         )
     }
     factory(name = GET_MOVIE_DETAIL_USECASE) {
         GetMovieDetailUseCase(
-            transformer = AsyncFlowableTransformer(),
+            transformer = AsyncObservableTransformer(),
             repositories = get()
         )
     }

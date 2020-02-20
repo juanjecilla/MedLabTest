@@ -1,6 +1,6 @@
-package com.themoviedbexample.presentation.common
+package com.themoviedbexample.presentation.common.flowable
 
-import com.themoviedbexample.domain.common.FlowableRxTransformer
+import com.themoviedbexample.domain.common.flowable.FlowableRxTransformer
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
