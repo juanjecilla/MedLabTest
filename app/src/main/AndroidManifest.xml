@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.medlab.medlabtest">
+    package="com.example.themoviedbexample">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".AppClass"
+        android:name="com.example.themoviedbexample.AppClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,11 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name="com.example.themoviedbexample.ui.detail.DetailActivity"
             android:label="@string/title_activity_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="com.example.themoviedbexample.ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

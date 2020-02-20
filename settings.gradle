@@ -1,2 +1,2 @@
-include ':app'
-rootProject.name='MedLabTest'
+include ':app', ':domain', ':data', ':presentation'
+rootProject.name='TheMovieDbExample'
