@@ -1,7 +1,7 @@
 package com.themoviedbexample.domain.usecases
 
-import com.themoviedbexample.domain.common.TestTransformer
 import com.themoviedbexample.domain.common.TestEntityUtils
+import com.themoviedbexample.domain.common.TestTransformer
 import com.themoviedbexample.domain.common.mock
 import com.themoviedbexample.domain.repositories.MovieRepository
 import io.reactivex.Observable

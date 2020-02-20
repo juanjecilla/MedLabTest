@@ -1,4 +1,4 @@
-package com.themoviedbexample.domain.common
+package com.themoviedbexample.presentation.utils
 
 import com.themoviedbexample.domain.entities.MovieDetailEntity
 import com.themoviedbexample.domain.entities.MovieItemEntity
@@ -31,8 +31,7 @@ class TestEntityUtils {
                 MovieItemEntity(
                     id = it.toLong(),
                     title = "Title $it",
-                    posterPath = ""
-                )
+                    posterPath = "")
             }
         }
     }

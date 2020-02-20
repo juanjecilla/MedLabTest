@@ -31,7 +31,7 @@ class MovieDataEntityMapper constructor() {
 
     fun mapToEntity(data: MovieDetailData?): MovieDetailEntity? = MovieDetailEntity(
         id = data?.id,
-        title= data?.title,
+        title = data?.title,
         posterPath = data?.posterPath,
         overview = data?.overview
     )

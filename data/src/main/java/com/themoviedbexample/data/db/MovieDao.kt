@@ -21,6 +21,6 @@ interface MovieDao {
     fun clear()
 
     @Query("Select * from movie_detail Where id = :id")
-    fun getMovieDetail(id : Long): Observable<MovieDetailData?>
+    fun getMovieDetail(id: Long): Observable<MovieDetailData?>
 
 }

@@ -4,11 +4,11 @@
     <item
         android:id="@+id/action_home"
         android:title=""
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/selector_ic_home" />
+        android:icon="@drawable/selector_ic_home"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_fav"
         android:title=""
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/selector_ic_fav" />
+        android:icon="@drawable/selector_ic_fav"
+        app:showAsAction="ifRoom" />
 </menu>

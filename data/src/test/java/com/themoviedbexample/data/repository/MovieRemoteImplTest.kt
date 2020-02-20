@@ -15,7 +15,7 @@ class MovieRemoteImplTest {
 
     private lateinit var mApi: RemoteMovieApi
     private lateinit var mMovieRemoteImpl: MovieRemoteImpl
-    private lateinit var mMapper : MovieDataEntityMapper
+    private lateinit var mMapper: MovieDataEntityMapper
 
     @Before
     fun before() {
@@ -25,23 +25,23 @@ class MovieRemoteImplTest {
     }
 
     @Test
-    fun testGetMovieDetail(){
+    fun testGetMovieDetail() {
         val movieDetail = TestEntityUtils.getTestMovieEntity(123)
         Mockito.`when`(mApi.getMovieDetail(anyLong())).thenReturn(Observable.just(movieDetail))
 
         mMovieRemoteImpl.getMovieDetail(123).test()
-            .assertValue { mMapper.mapToEntity(movieDetail) == it}
+            .assertValue { mMapper.mapToEntity(movieDetail) == it }
             .assertComplete()
     }
 
     @Test
-    fun testGetMovieItems(){
+    fun testGetMovieItems() {
 
         val movieItemSource = TestEntityUtils.getTestMovieSourceEntity(20)
         Mockito.`when`(mApi.getMovieItems()).thenReturn(Observable.just(movieItemSource))
 
         mMovieRemoteImpl.getMovieItems().test()
-            .assertValue { mMapper.mapToEntity(movieItemSource) == it}
+            .assertValue { mMapper.mapToEntity(movieItemSource) == it }
             .assertComplete()
     }
 }
