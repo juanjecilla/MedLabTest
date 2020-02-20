@@ -9,7 +9,7 @@ import com.themoviedbexample.domain.entities.MovieSourcesEntity
 import io.reactivex.Observable
 
 class MovieCacheImpl(
-    private val database: MovieDatabase,
+    database: MovieDatabase,
     private val entityToDataMapper: MovieEntityDataMapper,
     private val dataToEntityMapper: MovieDataEntityMapper
 ) : MovieDataStore {

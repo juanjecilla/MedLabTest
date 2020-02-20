@@ -3,7 +3,7 @@ package com.themoviedbexample.data.repository
 import com.themoviedbexample.data.api.RemoteMovieApi
 import com.themoviedbexample.data.mappers.MovieDataEntityMapper
 import com.themoviedbexample.data.utils.TestEntityUtils
-import com.themoviedbexample.domain.common.mock
+import com.themoviedbexample.data.utils.mock
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test

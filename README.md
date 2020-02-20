@@ -25,6 +25,7 @@ Second application follows Clean architecture organized in three modules:
 - Others (UI)
 
 ## Next Steps
+- Finish tests in domain, data and presentation modules to increase Coverage
 - Migrate app module to Clean Architecture.
 - Create tests for MVP pattern.
 - Clone all features from app module in the presentation module.
