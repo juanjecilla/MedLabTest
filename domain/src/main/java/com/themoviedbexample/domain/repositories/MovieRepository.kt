@@ -6,8 +6,8 @@ import io.reactivex.Observable
 
 interface MovieRepository {
 
-    fun getMovieItems(): Observable<MovieSourcesEntity>
-    fun getRemoteMovieItems(): Observable<MovieSourcesEntity>
+    fun getMovieItems(data: Map<String, String>): Observable<MovieSourcesEntity>
+    fun getRemoteMovieItems(data: Map<String, String>): Observable<MovieSourcesEntity>
     fun getLocalMovieItems(): Observable<MovieSourcesEntity>
 
     fun getMovieDetail(id: Long): Observable<MovieDetailEntity>

@@ -14,13 +14,13 @@ class MovieRepositoryImpl(
         return cache.getMovieItems()
     }
 
-    override fun getRemoteMovieItems(): Observable<MovieSourcesEntity> {
-        return remote.getMovieItems()
+    override fun getRemoteMovieItems(data: Map<String, String>): Observable<MovieSourcesEntity> {
+        return remote.getMovieItems(data)
     }
 
-    override fun getMovieItems(): Observable<MovieSourcesEntity> {
-        val updateMovieItemsObservable = remote.getMovieItems()
-        return cache.getMovieItems()
+    override fun getMovieItems(data: Map<String, String>): Observable<MovieSourcesEntity> {
+        val updateMovieItemsObservable = remote.getMovieItems(data)
+        return cache.getMovieItems(data).takeUntil(updateMovieItemsObservable)
             .mergeWith(updateMovieItemsObservable.doOnNext { remoteMovieItems ->
                 cache.saveArticles(remoteMovieItems)
             })

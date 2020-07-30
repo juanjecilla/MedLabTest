@@ -1,6 +1,5 @@
 package com.themoviedbexample.presentation.ui.movielist
 
-import androidx.annotation.UiThread
 import androidx.lifecycle.Observer
 import androidx.test.annotation.UiThreadTest
 import androidx.test.runner.AndroidJUnit4
@@ -42,8 +41,8 @@ class MovieListViewModelTest {
     @UiThreadTest
     fun fetchMovieItems() {
         val movieEntities = TestEntityUtils.getTestMovieSourceEntity(20)
-        Mockito.`when`(mMovieRepository.getMovieItems()).thenReturn(Observable.just(movieEntities))
-        mMovieListViewModel.fetchMovieItems()
+        Mockito.`when`(mMovieRepository.getMovieItems(data)).thenReturn(Observable.just(movieEntities))
+        mMovieListViewModel.fetchMovieItems(page)
 
         val movies = movieEntityMovieMapper.mapFrom(movieEntities)
 

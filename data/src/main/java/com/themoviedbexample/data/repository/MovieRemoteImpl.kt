@@ -11,9 +11,9 @@ class MovieRemoteImpl constructor(private val api: RemoteMovieApi) : MovieDataSt
     private val mMovieMapper =
         MovieDataEntityMapper()
 
-    override fun getMovieItems(): Observable<MovieSourcesEntity> {
+    override fun getMovieItems(data: Map<String, String>): Observable<MovieSourcesEntity> {
 
-        return api.getMovieItems().map { mMovieMapper.mapToEntity(it) }
+        return api.getMovieItems(data).map { mMovieMapper.mapToEntity(it) }
     }
 
     override fun getMovieDetail(id: Long): Observable<MovieDetailEntity> {

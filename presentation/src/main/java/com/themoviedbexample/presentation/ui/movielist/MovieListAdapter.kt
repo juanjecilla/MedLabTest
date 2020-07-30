@@ -51,9 +51,9 @@ class MovieListAdapter(
 
     fun updateList(list: List<MovieItem>) {
         if (list.isNotEmpty()) {
-            mData.clear()
+            val prevCount = itemCount
             mData.addAll(list)
-            notifyDataSetChanged()
+            notifyItemRangeChanged(itemCount, list.size)
         }
     }
 }

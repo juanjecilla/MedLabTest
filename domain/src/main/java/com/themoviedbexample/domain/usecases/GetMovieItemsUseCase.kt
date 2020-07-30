@@ -11,12 +11,19 @@ class GetMovieItemsUseCase(
     private val repositories: MovieRepository
 ) : BaseUseCase<MovieSourcesEntity>(transformer) {
 
-    override fun createObservable(data: Map<String, Any>?): Observable<MovieSourcesEntity> {
-        return repositories.getMovieItems()
+    override fun createObservable(data: Map<String, String>?): Observable<MovieSourcesEntity> {
+        return data?.let {
+            repositories.getMovieItems(data)
+        } ?: throw IllegalArgumentException()
     }
 
-    fun getMovieItems(): Observable<MovieSourcesEntity> {
-        val data = HashMap<String, Any>()
+    fun getMovieItems(page: Int): Observable<MovieSourcesEntity> {
+        val data = HashMap<String, String>()
+        data[PARAM_PAGE] = page.toString()
         return observable(data)
+    }
+
+    companion object {
+        private const val PARAM_PAGE = "page"
     }
 }
