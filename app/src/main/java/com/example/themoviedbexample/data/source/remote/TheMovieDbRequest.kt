@@ -35,7 +35,7 @@ class TheMovieDbRequest(
     }
 
     override fun onFailure(call: Call<JsonElement>, t: Throwable) {
-        Log.e("ON_FAILURE", call.request().url().toString() + ": " + t.message)
+        Log.e("ON_FAILURE", call.request().url.toString() + ": " + t.message)
         mCallback.onFailure(t)
     }
 
