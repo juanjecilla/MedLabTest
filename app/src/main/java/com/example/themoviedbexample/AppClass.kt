@@ -7,16 +7,16 @@ import androidx.multidex.MultiDex
 import com.example.themoviedbexample.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import javax.inject.Inject
 
 
-class AppClass : Application(), HasActivityInjector {
+class AppClass : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
@@ -40,7 +40,7 @@ class AppClass : Application(), HasActivityInjector {
         MultiDex.install(this)
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     companion object {
         lateinit var instance: AppClass private set
