@@ -22,8 +22,8 @@ class MovieListViewModel(
 
     var mMovieItems = MutableLiveData<Data<MovieSources>>()
 
-    fun fetchMovieItems() {
-        val disposable = mGetMovieItemsUseCase.getMovieItems()
+    fun fetchMovieItems(page: Int = 1) {
+        val disposable = mGetMovieItemsUseCase.getMovieItems(page)
             .flatMap { mMapper.observable(it) }
             .subscribe({ response ->
                 Log.d(TAG, "On Next Called")

@@ -40,7 +40,7 @@ class MovieRemoteImplTest {
         val movieItemSource = TestEntityUtils.getTestMovieSourceEntity(20)
         Mockito.`when`(mApi.getMovieItems()).thenReturn(Observable.just(movieItemSource))
 
-        mMovieRemoteImpl.getMovieItems().test()
+        mMovieRemoteImpl.getMovieItems(data).test()
             .assertValue { mMapper.mapToEntity(movieItemSource) == it }
             .assertComplete()
     }

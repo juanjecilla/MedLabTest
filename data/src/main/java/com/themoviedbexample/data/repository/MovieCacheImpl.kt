@@ -16,7 +16,7 @@ class MovieCacheImpl(
 
     private val dao: MovieDao = database.getMoviesDao()
 
-    override fun getMovieItems(): Observable<MovieSourcesEntity> {
+    override fun getMovieItems(data: Map<String, String>): Observable<MovieSourcesEntity> {
         return dao.getAllArticles().map {
             dataToEntityMapper.mapToEntity(it)
         }

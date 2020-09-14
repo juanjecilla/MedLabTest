@@ -23,9 +23,9 @@ class GetMovieItemsUseCaseTest {
         val movieSourceEntity = TestEntityUtils.getTestMovieSourceEntity(20)
         val getMovieItemsUseCase = GetMovieItemsUseCase(TestTransformer(), mRepository)
 
-        Mockito.`when`(mRepository.getMovieItems()).thenReturn(Observable.just(movieSourceEntity))
+        Mockito.`when`(mRepository.getMovieItems(data)).thenReturn(Observable.just(movieSourceEntity))
 
-        getMovieItemsUseCase.getMovieItems().test()
+        getMovieItemsUseCase.getMovieItems(page).test()
             .assertValue { returnedMovieEntity ->
                 returnedMovieEntity.page == 0
                 returnedMovieEntity.results == movieSourceEntity.results

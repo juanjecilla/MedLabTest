@@ -5,11 +5,12 @@ import com.themoviedbexample.data.entitites.MovieItemSourcesData
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.QueryMap
 
 interface RemoteMovieApi {
 
     @GET("/3/movie/popular")
-    fun getMovieItems(): Observable<MovieItemSourcesData>
+    fun getMovieItems(@QueryMap params: Map<String, String>): Observable<MovieItemSourcesData>
 
     @GET("/3/movie/{movie_id}")
     fun getMovieDetail(@Path("movie_id") movieId: Long): Observable<MovieDetailData>

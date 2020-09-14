@@ -5,6 +5,6 @@ import com.themoviedbexample.domain.entities.MovieSourcesEntity
 import io.reactivex.Observable
 
 interface MovieDataStore {
-    fun getMovieItems(): Observable<MovieSourcesEntity>
+    fun getMovieItems(data: Map<String, String> = HashMap()): Observable<MovieSourcesEntity>
     fun getMovieDetail(id: Long): Observable<MovieDetailEntity>
 }

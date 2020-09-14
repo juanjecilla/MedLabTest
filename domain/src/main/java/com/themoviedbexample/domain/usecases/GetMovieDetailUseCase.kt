@@ -11,13 +11,13 @@ class GetMovieDetailUseCase(
     private val repositories: MovieRepository
 ) : BaseUseCase<MovieDetailEntity>(transformer) {
 
-    override fun createObservable(data: Map<String, Any>?): Observable<MovieDetailEntity> {
-        return repositories.getMovieDetail(data?.get(ID_KEY) as Long)
+    override fun createObservable(data: Map<String, String>?): Observable<MovieDetailEntity> {
+        return repositories.getMovieDetail(data?.get(ID_KEY)?.toLong()?:0)
     }
 
     fun getMovieDetail(id: Long): Observable<MovieDetailEntity> {
-        val data = HashMap<String, Long>()
-        data[ID_KEY] = id
+        val data = HashMap<String, String>()
+        data[ID_KEY] = id.toString()
         return observable(data)
     }
 
